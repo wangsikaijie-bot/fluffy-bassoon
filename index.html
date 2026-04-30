@@ -6,126 +6,90 @@
   <title>Anthony | Personal Website</title>
   <style>
     :root{
-      --bg:#000000;
-      --bg-soft:#0a0a0f;
+      --bg:#000;
       --text:#f5f5f7;
       --muted:#a1a1a6;
-      --line:rgba(255,255,255,.10);
-      --card:rgba(255,255,255,.05);
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
       --accent:#2997ff;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
       --radius:28px;
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       background:
-        radial-gradient(circle at top, #1a1a22 0%, #07070b 35%, #000 75%);
+        radial-gradient(circle at 20% 10%,rgba(41,151,255,.28),transparent 28%),
+        radial-gradient(circle at 80% 30%,rgba(150,90,255,.20),transparent 30%),
+        #000;
+      color:var(--text);
       overflow-x:hidden;
     }
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
+    a{text-decoration:none;color:inherit}
 
-    .nav{
+    nav{
       position:fixed;
       top:0;
-      left:0;
       width:100%;
-      z-index:999;
+      z-index:99;
       background:rgba(0,0,0,.55);
       backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid var(--line);
     }
 
     .nav-inner{
-      max-width:1200px;
-      margin:0 auto;
-      padding:14px 20px;
+      max-width:1180px;
+      margin:auto;
+      padding:14px 22px;
       display:flex;
       justify-content:space-between;
       align-items:center;
     }
 
-    .brand{
-      font-size:18px;
-      font-weight:700;
-      letter-spacing:-0.02em;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:18px;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .nav-links a:hover{
-      color:#fff;
-    }
+    .logo{font-weight:700;font-size:18px}
+    .links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+    .links a:hover{color:white}
 
     section{
       min-height:100vh;
+      padding:110px 22px 70px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:110px 20px 70px;
-      position:relative;
     }
 
-    .wrap{
-      width:100%;
-      max-width:1200px;
-      margin:0 auto;
-    }
+    .wrap{max-width:1180px;width:100%;margin:auto}
 
-    .hero{
-      text-align:center;
-    }
-
+    .hero{text-align:center}
     .badge{
       display:inline-block;
       padding:8px 14px;
       border:1px solid var(--line);
       border-radius:999px;
-      background:rgba(255,255,255,.04);
+      background:rgba(255,255,255,.05);
       color:#d2d2d7;
+      margin-bottom:22px;
       font-size:13px;
-      margin-bottom:24px;
     }
 
     h1{
-      font-size:clamp(54px,10vw,120px);
-      line-height:.95;
-      letter-spacing:-0.05em;
-      font-weight:700;
-      margin-bottom:18px;
+      font-size:clamp(58px,11vw,128px);
+      letter-spacing:-.06em;
+      line-height:.92;
+      margin-bottom:22px;
     }
 
-    .hero-sub{
-      max-width:800px;
-      margin:0 auto;
+    .hero p{
+      max-width:820px;
+      margin:auto;
+      color:#d2d2d7;
       font-size:clamp(18px,2.5vw,30px);
       line-height:1.45;
-      color:#d2d2d7;
     }
 
-    .hero-actions{
+    .btns{
       margin-top:34px;
       display:flex;
       justify-content:center;
@@ -134,383 +98,358 @@
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:150px;
       padding:14px 24px;
       border-radius:999px;
-      font-size:16px;
       font-weight:600;
-      transition:.28s ease;
+      transition:.25s;
+      display:inline-block;
     }
 
-    .btn-primary{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 10px 30px rgba(41,151,255,.28);
+    .primary{background:var(--accent)}
+    .secondary{border:1px solid var(--line);background:rgba(255,255,255,.05)}
+    .btn:hover{transform:translateY(-3px)}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
     }
 
-    .btn-primary:hover{
-      transform:translateY(-2px);
-      filter:brightness(1.05);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      color:var(--text);
-    }
-
-    .btn-secondary:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .scroll-tip{
-      margin-top:40px;
-      color:#8e8e93;
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      animation:breathe 2s ease-in-out infinite;
-    }
-
-    @keyframes breathe{
-      0%,100%{opacity:.55;transform:translateY(0);}
-      50%{opacity:1;transform:translateY(4px);}
-    }
-
-    .glow{
-      position:absolute;
-      width:520px;
-      height:520px;
-      background:radial-gradient(circle, rgba(41,151,255,.22), rgba(41,151,255,0) 68%);
-      filter:blur(20px);
-      z-index:-1;
-      animation:float 7s ease-in-out infinite;
-    }
-
-    .glow.one{
-      top:10%;
-      left:50%;
-      transform:translateX(-50%);
-    }
-
-    .glow.two{
-      right:-120px;
-      bottom:8%;
-      width:420px;
-      height:420px;
-      animation-delay:1.5s;
-    }
-
-    @keyframes float{
-      0%,100%{transform:translate(-50%,0);}
-      50%{transform:translate(-50%,-18px);}
-    }
-
-    .panel{
-      width:100%;
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    .panel,.card{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
       border:1px solid var(--line);
       border-radius:var(--radius);
-      box-shadow:var(--shadow);
       padding:30px;
-    }
-
-    .section-title{
-      font-size:clamp(36px,5vw,68px);
-      line-height:1;
-      letter-spacing:-0.05em;
-      margin-bottom:18px;
-    }
-
-    .section-text{
-      font-size:18px;
-      line-height:1.85;
-      color:#d2d2d7;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:24px;
-      align-items:stretch;
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
     }
 
     .mini{
       color:var(--muted);
-      font-size:13px;
-      letter-spacing:.05em;
       text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:13px;
       margin-bottom:14px;
     }
 
-    .list{
-      display:grid;
-      gap:14px;
-      margin-top:18px;
+    h2{
+      font-size:clamp(38px,5.5vw,72px);
+      letter-spacing:-.05em;
+      line-height:1;
+      margin-bottom:20px;
     }
 
-    .list-item{
-      padding:16px 18px;
-      border-radius:20px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color:#e8e8ed;
-      font-size:16px;
-      line-height:1.6;
+    .text{
+      color:#d2d2d7;
+      font-size:18px;
+      line-height:1.85;
     }
+
+    .stats{
+      display:grid;
+      gap:14px;
+    }
+
+    .stat{
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:30px;
+      margin-bottom:6px;
+    }
+
+    .stat span{color:var(--muted)}
 
     .cards{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:20px;
-    }
-
-    .card{
-      padding:24px;
-      border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
     }
 
     .card h3{
       font-size:26px;
       margin-bottom:12px;
-      letter-spacing:-0.03em;
     }
 
     .card p{
       color:#d2d2d7;
-      font-size:17px;
-      line-height:1.8;
+      line-height:1.75;
+      font-size:16px;
     }
 
-    .quote-box{
-      margin:0 auto;
-      width:min(900px,100%);
-      padding:34px 24px;
-      border-radius:32px;
+    .timeline{
+      display:grid;
+      gap:18px;
+    }
+
+    .time-item{
+      display:grid;
+      grid-template-columns:110px 1fr;
+      gap:18px;
+      padding:22px;
+      border-radius:24px;
+      background:rgba(255,255,255,.05);
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      box-shadow:var(--shadow);
-      text-align:center;
+    }
+
+    .time{
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+    }
+
+    .project{
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .project .tag{
+      display:inline-block;
+      width:max-content;
+      padding:6px 12px;
+      border-radius:999px;
+      color:#d2d2d7;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      font-size:13px;
+      margin-bottom:18px;
     }
 
     .quote{
-      font-size:clamp(22px,3vw,36px);
-      line-height:1.55;
-      letter-spacing:-0.03em;
-    }
-
-    .contact{
       text-align:center;
+      font-size:clamp(24px,4vw,46px);
+      line-height:1.45;
+      letter-spacing:-.04em;
     }
 
-    .contact p{
-      max-width:760px;
-      margin:0 auto 26px;
-      color:#d2d2d7;
-      font-size:20px;
-      line-height:1.8;
-    }
-
+    .contact{text-align:center}
     .email{
-      font-size:clamp(20px,2.5vw,32px);
-      font-weight:600;
+      font-size:clamp(22px,3vw,36px);
+      font-weight:700;
+      margin:24px 0;
       word-break:break-word;
-      margin:22px 0;
     }
 
     footer{
-      padding:28px 20px 42px;
       text-align:center;
       color:#8e8e93;
+      padding:30px 20px 46px;
       font-size:14px;
     }
 
     .reveal{
       opacity:0;
-      transform:translateY(32px) scale(.98);
-      transition:opacity .9s ease, transform .9s ease;
+      transform:translateY(32px);
+      transition:.8s ease;
     }
 
-    .reveal.visible{
+    .reveal.show{
       opacity:1;
-      transform:translateY(0) scale(1);
+      transform:translateY(0);
     }
 
-    @media (max-width: 900px){
-      .two-col{
+    @media(max-width:900px){
+      .grid-2,.cards,.project-grid{
         grid-template-columns:1fr;
       }
-
-      .cards{
+      .time-item{
         grid-template-columns:1fr;
       }
     }
 
-    @media (max-width: 560px){
-      .nav-links{
-        display:none;
-      }
-
-      .hero-actions{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .btn{
-        width:100%;
-        max-width:280px;
-      }
-
-      .panel,.card{
-        border-radius:22px;
-      }
-
-      .section-text,.card p,.contact p{
-        font-size:17px;
-      }
+    @media(max-width:560px){
+      .links{display:none}
+      .btn{width:100%;max-width:280px}
+      .panel,.card{padding:24px;border-radius:22px}
     }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
+  <nav>
     <div class="nav-inner">
-      <a href="#top" class="brand">Anthony</a>
-      <div class="nav-links">
+      <a class="logo" href="#home">Anthony</a>
+      <div class="links">
         <a href="#about">关于</a>
-        <a href="#interests">兴趣</a>
-        <a href="#goals">目标</a>
+        <a href="#skills">兴趣</a>
+        <a href="#timeline">成长</a>
+        <a href="#projects">作品</a>
         <a href="#contact">联系</a>
       </div>
     </div>
   </nav>
 
-  <section id="top">
-    <div class="glow one"></div>
+  <section id="home">
     <div class="wrap hero reveal">
-      <div class="badge">Personal Introduction</div>
-      <h1>Anthony</h1>
-      <p class="hero-sub">
-        学生 · 热爱科技与设计 · 持续探索与成长<br>
-        用简洁的方式，记录自己，也表达自己。
+      <div class="badge">Personal Website · Anthony</div>
+      <h1>Think.<br>Create.<br>Grow.</h1>
+      <p>
+        你好，我是 Anthony，一名正在不断探索世界的学生。
+        我喜欢科技、设计和清晰的表达，也希望用自己的方式记录成长。
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#about">了解更多</a>
-        <a class="btn btn-secondary" href="mailto:wangsikaijie@gmail.com">联系我</a>
+      <div class="btns">
+        <a class="btn primary" href="#about">开始了解</a>
+        <a class="btn secondary" href="mailto:wangsikaijie@gmail.com">联系我</a>
       </div>
-      <div class="scroll-tip">向下滑动</div>
     </div>
   </section>
 
   <section id="about">
-    <div class="wrap two-col">
+    <div class="wrap grid-2">
       <div class="panel reveal">
         <div class="mini">About Me</div>
-        <h2 class="section-title">保持好奇，认真成长。</h2>
-        <p class="section-text">
-          你好，我是 Anthony。作为一名学生，我对科技、设计和新鲜事物始终保持兴趣。
-          我喜欢有条理、有审美、又能真正解决问题的东西，也欣赏简洁而有力量的表达方式。
+        <h2>关于我</h2>
+        <p class="text">
+          我是 Anthony，一名学生。我喜欢尝试新东西，也喜欢把复杂的内容变得简单清楚。
+          对我来说，学习不是只为了完成任务，而是为了慢慢形成自己的想法和能力。
           <br><br>
-          对我来说，个人网页不只是一个页面，它更像是一个窗口。
-          它记录我的想法、兴趣和成长，也让我能用更清晰的方式介绍自己。
-          我希望自己能不断学习，不断进步，在未来做出真正属于自己的作品。
+          我欣赏简洁、现代、有秩序的设计，也喜欢科技带来的可能性。
+          这个网页是我的个人介绍，也是我开始表达自己的一个小作品。
         </p>
       </div>
 
       <div class="panel reveal">
-        <div class="mini">Profile</div>
-        <div class="list">
-          <div class="list-item">姓名：Anthony</div>
-          <div class="list-item">身份：Student / 学生</div>
-          <div class="list-item">风格偏好：简洁、现代、科技感</div>
-          <div class="list-item">联系方式：wangsikaijie@gmail.com</div>
+        <div class="mini">Quick Facts</div>
+        <div class="stats">
+          <div class="stat">
+            <strong>Student</strong>
+            <span>正在学习和成长</span>
+          </div>
+          <div class="stat">
+            <strong>Design</strong>
+            <span>喜欢简洁高级的视觉风格</span>
+          </div>
+          <div class="stat">
+            <strong>Tech</strong>
+            <span>对网页、工具和未来科技感兴趣</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="interests">
+  <section id="skills">
     <div class="wrap">
-      <div class="reveal" style="text-align:center; margin-bottom:28px;">
-        <div class="mini">Interests & Personality</div>
-        <h2 class="section-title">我喜欢的事</h2>
+      <div class="reveal" style="text-align:center;margin-bottom:32px;">
+        <div class="mini">Interests</div>
+        <h2>兴趣与特点</h2>
       </div>
 
       <div class="cards">
         <div class="card reveal">
-          <h3>科技</h3>
-          <p>
-            我对科技一直很有兴趣，喜欢接触新工具、新产品，也喜欢思考技术如何改变生活。
-            从网页到软件界面，从功能到体验，我都愿意去观察和学习。
-          </p>
+          <h3>科技探索</h3>
+          <p>喜欢接触新工具、新产品和新想法，观察它们如何改变生活与学习方式。</p>
         </div>
-
         <div class="card reveal">
-          <h3>设计</h3>
-          <p>
-            我喜欢简洁、干净、有秩序的设计风格。好的设计不只是好看，
-            也应该清楚、舒服，并且让人更容易理解内容。
-          </p>
+          <h3>视觉设计</h3>
+          <p>喜欢干净、克制、有层次的页面。好的设计应该让内容更容易被理解。</p>
         </div>
-
         <div class="card reveal">
-          <h3>学习</h3>
-          <p>
-            我愿意尝试新事物，也愿意不断提升自己。无论是新的知识、技能，
-            还是新的表达方式，我都希望一步一步把它们变成自己的能力。
-          </p>
+          <h3>持续学习</h3>
+          <p>愿意不断尝试，把想法变成实际作品，在过程中提升自己的能力。</p>
         </div>
-
         <div class="card reveal">
-          <h3>表达自己</h3>
-          <p>
-            我希望能用作品、网页和内容来表达自己，而不是只停留在想法里。
-            对我来说，做出东西本身，就是成长的一部分。
-          </p>
+          <h3>清晰表达</h3>
+          <p>希望自己能把观点讲清楚，把内容整理好，让别人更容易看懂。</p>
+        </div>
+        <div class="card reveal">
+          <h3>独立思考</h3>
+          <p>面对问题时不只看表面，也会尝试理解背后的原因和逻辑。</p>
+        </div>
+        <div class="card reveal">
+          <h3>创造作品</h3>
+          <p>喜欢做出真正能展示自己的东西，比如网页、内容、项目和想法。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="goals">
-    <div class="wrap reveal">
-      <div class="quote-box">
-        <div class="mini" style="margin-bottom:18px;">Future Goals</div>
-        <div class="quote">
-          “在不断变化的世界里，保持好奇心，持续学习，慢慢积累，<br>
-          让自己成为一个更有想法、更有能力的人。”
-        </div>
+  <section id="timeline">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;margin-bottom:32px;">
+        <div class="mini">Growth Timeline</div>
+        <h2>成长路线</h2>
       </div>
 
-      <div class="two-col" style="margin-top:24px;">
-        <div class="panel reveal">
-          <div class="mini">My Goals</div>
-          <h2 class="section-title">我想成为怎样的人</h2>
-          <p class="section-text">
-            我希望自己不仅能学会更多知识，也能拥有自己的判断和风格。
-            我想继续提升表达能力、审美能力和创造能力，让自己做出来的东西越来越成熟。
-            <br><br>
-            不管是网页、项目，还是未来更多的尝试，我都希望它们能代表真实的我，
-            也能让我看到自己一步一步变得更好。
-          </p>
-        </div>
-
-        <div class="panel reveal">
-          <div class="mini">Keywords</div>
-          <div class="list">
-            <div class="list-item">保持好奇心</div>
-            <div class="list-item">持续学习新技能</div>
-            <div class="list-item">提升审美和表达</div>
-            <div class="list-item">做出属于自己的作品</div>
-            <div class="list-item">一步一步成长</div>
+      <div class="timeline">
+        <div class="time-item reveal">
+          <div class="time">现在</div>
+          <div>
+            <h3>建立个人网页</h3>
+            <p class="text">开始学习网页展示，把自己的介绍、兴趣和目标整理成一个完整页面。</p>
           </div>
         </div>
+
+        <div class="time-item reveal">
+          <div class="time">下一步</div>
+          <div>
+            <h3>学习更多技能</h3>
+            <p class="text">继续了解 HTML、CSS、设计排版和网页发布，让作品越来越成熟。</p>
+          </div>
+        </div>
+
+        <div class="time-item reveal">
+          <div class="time">未来</div>
+          <div>
+            <h3>做出自己的作品</h3>
+            <p class="text">希望能做出更多能代表自己的项目，不只是展示自己，也记录成长。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;margin-bottom:32px;">
+        <div class="mini">Projects</div>
+        <h2>作品展示</h2>
+      </div>
+
+      <div class="project-grid">
+        <div class="card project reveal">
+          <div>
+            <span class="tag">Website</span>
+            <h3>个人主页</h3>
+            <p>
+              一个用于介绍 Anthony 的个人网站，包含个人简介、兴趣、目标和联系方式。
+              设计风格偏 Apple 极简风。
+            </p>
+          </div>
+          <a class="btn secondary" href="#home">查看页面</a>
+        </div>
+
+        <div class="card project reveal">
+          <div>
+            <span class="tag">Learning</span>
+            <h3>学习记录</h3>
+            <p>
+              未来可以在这里加入学习笔记、项目截图、读书记录或课程成果，
+              让网页内容越来越丰富。
+            </p>
+          </div>
+          <a class="btn secondary" href="#contact">联系了解</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap panel reveal">
+      <div class="quote">
+        “保持好奇心，认真学习，慢慢积累，<br>
+        把想法变成真正的作品。”
       </div>
     </div>
   </section>
@@ -518,38 +457,36 @@
   <section id="contact">
     <div class="wrap contact reveal">
       <div class="mini">Contact</div>
-      <h2 class="section-title">Let’s Connect.</h2>
-      <p>
-        这是我的个人网页，也是我表达自己的开始。<br>
-        如果你想联系我，欢迎通过邮箱找到我。
+      <h2>Let’s Connect.</h2>
+      <p class="text">
+        如果你想联系我，可以通过邮箱找到我。
       </p>
       <div class="email">
         <a href="mailto:wangsikaijie@gmail.com">wangsikaijie@gmail.com</a>
       </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:wangsikaijie@gmail.com">发送邮件</a>
-        <a class="btn btn-secondary" href="#top">回到顶部</a>
+      <div class="btns">
+        <a class="btn primary" href="mailto:wangsikaijie@gmail.com">发送邮件</a>
+        <a class="btn secondary" href="#home">回到顶部</a>
       </div>
     </div>
-    <div class="glow two"></div>
   </section>
 
   <footer>
-    © 2026 Anthony · Built with simplicity and curiosity
+    © 2026 Anthony · Personal Website
   </footer>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
         }
       });
-    }, {
-      threshold: 0.15
-    });
+    },{threshold:0.15});
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    reveals.forEach(el=>observer.observe(el));
   </script>
 </body>
 </html>
